@@ -1,0 +1,8 @@
+services:
+	- App\Router\RouterFactory::createRouter
+	- App\Components\Grids\SurveyGridBuilder
+	- App\Models\Repository\InterestRepository
+	- App\Models\Repository\SurveyRepository
+	- App\Components\Mappers\InterestMapper
+	- App\Components\Forms\SurveyForm
+	- App\Components\Forms\SurveyFormProcessor

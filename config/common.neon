@@ -1,0 +1,28 @@
+parameters:
+
+
+application:
+	errorPresenter:
+		4xx: Error4xx
+		5xx: Error5xx
+	mapping:
+		*: App\UI\Presenter\*Presenter
+
+
+database:
+	dsn: 'mysql:host=127.0.0.1;port=13306;dbname=taktik'
+	user: root
+	password: root
+
+
+latte:
+	strictTypes: yes
+	strictParsing: yes
+	extensions:
+		- App\UI\Accessory\LatteExtension
+
+
+di:
+	export:
+		parameters: no
+		tags: no
