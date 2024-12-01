@@ -59,11 +59,23 @@ class SurveyForm extends Control
         return $form;
     }
 
-    private function validateFields(Form $form): void
+    public function validateFields(Form $form): void
     {
         $values = (array)$form->getValues('array');
-        if (!preg_match('/^[a-zA-Z -]+$/', $values['name'])) {
+        $name = $values['name'] ?? '';
+        $comment = $values['comment'] ?? '';
+        $isAgreed = $values['isAgreed'] ?? false;
+
+        if ($name === '' || !preg_match('/^[a-zA-Z -]+$/',$name)) {
             $form->addError('Name can contain only letters and spaces.');
+        }
+
+        if ($comment === '') {
+            $form->addError('Comment field cant be empty.');
+        }
+
+        if (!$isAgreed) {
+            $form->addError('Terms and conditions are not accepted.');
         }
     }
 }
