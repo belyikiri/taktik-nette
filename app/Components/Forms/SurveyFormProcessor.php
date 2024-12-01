@@ -30,12 +30,14 @@ class SurveyFormProcessor
             $survey->setIsAgreed((bool)$values['isAgreed']);
             $insertedId = $this->surveyRepository->save($survey);
 
-            $interestTypes = (array)$values['interests'];
-            foreach ($interestTypes as $interestType) {
-                $interest = new Interest();
-                $interest->setType(Interest::ALLOWED_INTERESTS[(int)$interestType]);
-                $interest->setSurveyId($insertedId);
-                $this->interestRepository->save($interest);
+            if ($insertedId !== null) {
+                $interestTypes = (array)$values['interests'];
+                foreach ($interestTypes as $interestType) {
+                    $interest = new Interest();
+                    $interest->setType(Interest::ALLOWED_INTERESTS[(int)$interestType]);
+                    $interest->setSurveyId($insertedId);
+                    $this->interestRepository->save($interest);
+                }
             }
         } catch (Throwable $exception) {
             $form->addError($exception->getMessage());

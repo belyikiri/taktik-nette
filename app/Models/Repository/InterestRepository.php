@@ -56,7 +56,7 @@ class InterestRepository
 
             $this->db->commit();
 
-            return $inserted->getPrimary();
+            return $inserted ? $inserted->getPrimary() : null;
         } catch (Throwable $exception) {
             $this->db->rollBack();
 
